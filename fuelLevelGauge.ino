@@ -4,6 +4,10 @@
  *	Driver to set fuel gauge based on measured fuel level.
  */
 
+#include <stddef.h>
+#include <Arduino.h>
+#include <USB/USBAPI.h>
+#include <HardwareSerial.h>
 #include "board.h"
 #include "fuelLevelGauge.h"
 #include "fuelLevelMapping.h"
@@ -14,32 +18,32 @@
  * 
  * Sweeps fuel gauge output from 0%-100% and back to 0%.
  */
-void fuelLevelSweep(int delay_ms)
-{
-    byte fl;
-    for(fl = 0; fl < 200; fl++)
-    {
-      if(!setFuelGaugeOutput(fl))
-        SerialUSB.print("Error: Fuel level out of range\n\n");
-      #ifdef DEBUG_MESSAGES
-        SerialUSB.print("Spoofed Fuel Level: ");
-        SerialUSB.print(fl);
-        SerialUSB.print("\n\n");
-      #endif
-      delay(delay_ms);      
-    }
-    for(fl = 200; fl > 0; fl--)
-    {
-      if(!setFuelGaugeOutput(fl))
-        SerialUSB.print("Error: Fuel level out of range\n\n");
-      #ifdef DEBUG_MESSAGES
-        SerialUSB.print("Spoofed Fuel Level: ");
-        SerialUSB.print(fl);
-        SerialUSB.print("\n\n");
-      #endif
-      delay(delay_ms);
-    }
-}
+// void fuelLevelSweep(int delay_ms)
+// {
+//     byte fl;
+//     for(fl = 0; fl < 200; fl++)
+//     {
+//       if(!setFuelGaugeOutput(fl))
+//         SerialUSB.print("Error: Fuel level out of range\n\n");
+//       #ifdef DEBUG_MESSAGES
+//         SerialUSB.print("Spoofed Fuel Level: ");
+//         SerialUSB.print(fl);
+//         SerialUSB.print("\n\n");
+//       #endif
+//       delay(delay_ms);      
+//     }
+//     for(fl = 200; fl > 0; fl--)
+//     {
+//       if(!setFuelGaugeOutput(fl))
+//         SerialUSB.print("Error: Fuel level out of range\n\n");
+//       #ifdef DEBUG_MESSAGES
+//         SerialUSB.print("Spoofed Fuel Level: ");
+//         SerialUSB.print(fl);
+//         SerialUSB.print("\n\n");
+//       #endif
+//       delay(delay_ms);
+//     }
+// }
 
 
 /* getFuelLevelPercentage

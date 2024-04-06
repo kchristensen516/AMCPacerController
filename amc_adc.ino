@@ -1,4 +1,7 @@
 
+#include <stddef.h>
+#include <Arduino.h>
+#include "amc_adc.h"
 
 /* getADCAverage
  * 

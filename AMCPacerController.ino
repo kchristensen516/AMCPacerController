@@ -1,4 +1,3 @@
-
 /*
  * Pacer Controller
  * 
@@ -11,6 +10,7 @@
  
 /** Include files **/
 #include "fuelLevelGauge.h"
+#include "speedometer.h"
 #include "board.h"
 
 //#define DEBUG_FUEL_LEVEL_SWEEP
@@ -21,9 +21,8 @@ int fuelLevelSerial = 0;
 
 void setup() 
 {
-
   initFuelLevelGauge();
- 
+  initSpeedometer();
 }
 
 void loop() 
@@ -43,6 +42,7 @@ void loop()
     setFuelGaugeOutput(fuelLevelSerial);
   #else
     fuelLevelGaugeTask();
+    speedometerTask();
   #endif
 
 }
